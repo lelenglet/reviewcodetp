@@ -6,7 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,10 @@ public class AwesomePasswordChecker {
   private final List<double[]> clusterCenters = new ArrayList<>();
 
   /**
+   * Creation of a new passwordChecker from file
    * 
    * @param file
-   * @return
+   * @return instance
    * @throws IOException
    */
   public static AwesomePasswordChecker getInstance(File file) throws IOException {
@@ -30,8 +32,9 @@ public class AwesomePasswordChecker {
   }
 
   /**
+   * Creation of a new passwordChecker from ressource file
    * 
-   * @return
+   * @return instance
    * @throws IOException
    */
   public static AwesomePasswordChecker getInstance() throws IOException {
@@ -43,6 +46,8 @@ public class AwesomePasswordChecker {
   }
 
   /**
+   * Constructor of passwordChecker from inpur
+   * 
    * 
    * @param is
    * @throws IOException
@@ -63,9 +68,10 @@ public class AwesomePasswordChecker {
   }
 
   /**
+   * Create a maskArray from a password
    * 
    * @param password
-   * @return
+   * @return maskArray
    */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28];
@@ -120,12 +126,14 @@ public class AwesomePasswordChecker {
           } else {
             maskArray[i] = 7;
           }
+          break;
       }
     }
     return maskArray;
   }
 
   /**
+   * 
    * 
    * @param password
    * @return
@@ -140,6 +148,8 @@ public class AwesomePasswordChecker {
   }
 
   /**
+   * Compute the Euclidean distance between two arrays.
+   * 
    * 
    * @param a
    * @param b
@@ -154,9 +164,10 @@ public class AwesomePasswordChecker {
   }
 
   /**
+   * Compute a MD5Hex from a String
    * 
    * @param input
-   * @return
+   * @return md5hex
    */
   public static String ComputeMD5(String input) {
     byte[] message = input.getBytes();
