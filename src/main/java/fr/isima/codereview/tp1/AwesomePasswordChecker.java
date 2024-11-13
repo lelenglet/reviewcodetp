@@ -40,7 +40,7 @@ public class AwesomePasswordChecker {
   public static AwesomePasswordChecker getInstance() throws IOException {
     if (instance == null) {
       InputStream is = AwesomePasswordChecker.class.getClassLoader().getResourceAsStream("cluster_centers_HAC_aff.csv");
-      instance = new AwesomePasswordChecker(is);
+      instance = new AwesomePasswordChecker(is);   
     }
     return instance;
   }
@@ -56,7 +56,7 @@ public class AwesomePasswordChecker {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
     String line;
     while ((line = br.readLine()) != null) {
-      String[] values = line.split(";");
+      String[] values = line.split(",");
       double[] center = new double[values.length];
 
       for (int i = 0; i < values.length; ++i) {
