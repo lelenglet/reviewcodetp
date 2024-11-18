@@ -75,6 +75,7 @@ public class AwesomePasswordChecker {
    */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28];
+    if(password == null) return null;
     int limit = Math.min(password.length(), 28);
 
     for (int i = 0; i < limit; ++i) {
@@ -139,6 +140,7 @@ public class AwesomePasswordChecker {
    * @return minDistance
    */
   public double getDIstance(String password) {
+    if(password == null) return -1;
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
     for (double[] center : clusterCenters) {
@@ -169,6 +171,7 @@ public class AwesomePasswordChecker {
    * @return md5hex.toString()
    */
   public static String ComputeMD5(String input) {
+    if(input == null) return null;
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
 
