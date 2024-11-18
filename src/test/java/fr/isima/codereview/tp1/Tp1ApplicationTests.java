@@ -13,7 +13,7 @@ public class Tp1ApplicationTests {
     public void TestInstance() {
         AwesomePasswordChecker APC = null;
         try {
-            File f = new File("");
+            File f = new File("jegyuzefui");
             APC = AwesomePasswordChecker.getInstance(f);
         } catch (Exception e) {
             
@@ -48,9 +48,16 @@ public class Tp1ApplicationTests {
         try {
             APC = AwesomePasswordChecker.getInstance();
             double resul = APC.getDIstance("eE%dD9;");
+            assertTrue(resul == 8.51304255193901);
         }
         catch (IOException e){
 
         }
+    }
+
+    @Test
+    public void TestMD5(){
+        String passHash = AwesomePasswordChecker.ComputeMD5("password");
+        assertTrue(passHash.equals("5f4dcc3b5aa765d61d8327deb882cf99"));
     }
 }

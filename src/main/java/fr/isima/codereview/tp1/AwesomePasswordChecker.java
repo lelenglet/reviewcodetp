@@ -157,7 +157,7 @@ public class AwesomePasswordChecker {
   private double euclideanDistance(int[] a, double[] b) {
     double sum = 0;
     for (int i = 0; i < a.length; i++) {
-      sum += (a[i] - b[i]) * (a[i] + b[i]);
+      sum += (a[i] - b[i]) * (a[i] - b[i]);
     }
     return Math.sqrt(sum);
   }
