@@ -46,7 +46,7 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * Constructor of passwordChecker from inpur
+   * Constructor of passwordChecker from input
    * 
    * 
    * @param is
@@ -133,10 +133,10 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * 
+   * Give the Euclidian distance based on the mask of the password
    * 
    * @param password
-   * @return
+   * @return minDistance
    */
   public double getDIstance(String password) {
     int[] maskArray = maskAff(password);
@@ -150,10 +150,9 @@ public class AwesomePasswordChecker {
   /**
    * Compute the Euclidean distance between two arrays.
    * 
-   * 
    * @param a
    * @param b
-   * @return
+   * @return sqrt(sum)
    */
   private double euclideanDistance(int[] a, double[] b) {
     double sum = 0;
@@ -167,7 +166,7 @@ public class AwesomePasswordChecker {
    * Compute a MD5Hex from a String
    * 
    * @param input
-   * @return md5hex
+   * @return md5hex.toString()
    */
   public static String ComputeMD5(String input) {
     byte[] message = input.getBytes();
