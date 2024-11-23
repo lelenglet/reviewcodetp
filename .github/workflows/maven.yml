@@ -7,7 +7,7 @@
 # documentation.
 
 name: Java CI with Maven
-
+read: packages
 on:
   push:
     branches: [ main, develop ]
@@ -31,7 +31,8 @@ jobs:
       run: mvn -B package --file pom.xml
 
   deploy:
-
+    permission:
+      packages: write
     runs-on: ubuntu-latest
 
     steps:
@@ -51,7 +52,7 @@ jobs:
       - name: Deploy JavaDoc
         uses: MathieuSoysal/Javadoc-publisher.yml@v2.5.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
           javadoc-branch: javadoc
           java-version: 21
           target-folder: javadoc # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
@@ -95,7 +96,7 @@ jobs:
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF result to the GitHub Security Dashboard
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep-results.sarif
         if: always()
