@@ -7,7 +7,7 @@
 # documentation.
 
 name: Java CI with Maven
-read: packages
+
 on:
   push:
     branches: [ main, develop ]
