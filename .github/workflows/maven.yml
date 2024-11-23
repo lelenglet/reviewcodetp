@@ -31,7 +31,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
   deploy:
-    permission:
+    permissions:
       packages: write
     runs-on: ubuntu-latest
 
