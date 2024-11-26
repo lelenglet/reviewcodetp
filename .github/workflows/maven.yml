@@ -36,8 +36,8 @@ jobs:
       - name: Run Unit Tests
         run: mvn test
 
-      - name: Run Semgrep
-        run: semgrep --config=auto .
+      - name: Perform Semgrep Analysis
+        run: semgrep scan -q --sarif --config auto ./src/main/java > semgrep-results.sarif
 
   deploy:
     runs-on: ubuntu-latest
