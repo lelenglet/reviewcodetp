@@ -49,32 +49,32 @@ jobs:
       #  run: mvn javadoc:javadoc
 
 
-semgrep_scan:
-    name: semgrep/ci
-    runs-on: ubuntu-latest
-    container:
-      image: returntocorp/semgrep
-    if: (github.actor != 'dependabot[bot]')
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
+  semgrep_scan:
+      name: semgrep/ci
+      runs-on: ubuntu-latest
+      container:
+        image: returntocorp/semgrep
+      if: (github.actor != 'dependabot[bot]')
+      permissions:
+        security-events: write
+        actions: read
+        contents: read
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
 
-      - name: Perform Semgrep Analysis
-        run: semgrep scan -q --sarif --config auto ./src/main/java > semgrep-results.sarif
+        - name: Perform Semgrep Analysis
+          run: semgrep scan -q --sarif --config auto ./src/main/java > semgrep-results.sarif
 
-      - name: Save SARIF results as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: semgrep-scan-results
-          path: semgrep-results.sarif
+        - name: Save SARIF results as artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: semgrep-scan-results
+            path: semgrep-results.sarif
 
-      - name: Upload SARIF result to the GitHub Security Dashboard
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: semgrep-results.sarif
-        if: always()
+        - name: Upload SARIF result to the GitHub Security Dashboard
+          uses: github/codeql-action/upload-sarif@v3
+          with:
+            sarif_file: semgrep-results.sarif
+          if: always()
