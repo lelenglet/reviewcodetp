@@ -18,7 +18,7 @@ public class AwesomePasswordChecker {
   private final List<double[]> clusterCenters = new ArrayList<>();
 
   /**
-   * Creation of a new passwordChecker from file
+   * Creation of a new passwordChecker from file.
    * 
    * @param file
    * @return instance
@@ -32,7 +32,7 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * Creation of a new passwordChecker from ressource file
+   * Creation of a new passwordChecker from ressource file.
    * 
    * @return instance
    * @throws IOException
@@ -40,16 +40,16 @@ public class AwesomePasswordChecker {
   public static AwesomePasswordChecker getInstance() throws IOException {
     if (instance == null) {
       InputStream is = AwesomePasswordChecker.class.getClassLoader().getResourceAsStream("cluster_centers_HAC_aff.csv");
-      instance = new AwesomePasswordChecker(is);   
+      instance = new AwesomePasswordChecker(is);
     }
     return instance;
   }
 
   /**
-   * Constructor of passwordChecker from input
+   * Constructor of passwordChecker from input.
    * 
    * 
-   * @param is
+   * @param is inputStream
    * @throws IOException
    */
   private AwesomePasswordChecker(InputStream is) throws IOException {
@@ -70,12 +70,13 @@ public class AwesomePasswordChecker {
   /**
    * Create a maskArray from a password
    * 
-   * @param password
+   * @param password password
    * @return maskArray
    */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28];
-    if(password == null) return null;
+    if (password == null)
+      return null;
     int limit = Math.min(password.length(), 28);
 
     for (int i = 0; i < limit; ++i) {
@@ -134,13 +135,14 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * Give the Euclidian distance based on the mask of the password
+   * Give the Euclidian distance based on the mask of the password.
    * 
-   * @param password
+   * @param password password
    * @return minDistance
    */
   public double getDIstance(String password) {
-    if(password == null) return -1;
+    if (password == null)
+      return -1;
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
     for (double[] center : clusterCenters) {
@@ -152,8 +154,8 @@ public class AwesomePasswordChecker {
   /**
    * Compute the Euclidean distance between two arrays.
    * 
-   * @param a
-   * @param b
+   * @param a arrayInt
+   * @param b arrayDouble
    * @return sqrt(sum)
    */
   private double euclideanDistance(int[] a, double[] b) {
@@ -165,13 +167,14 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * Compute a MD5Hex from a String
+   * Compute a MD5Hex from a String.
    * 
-   * @param input
+   * @param input String
    * @return md5hex.toString()
    */
   public static String ComputeMD5(String input) {
-    if(input == null) return null;
+    if (input == null)
+      return null;
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
 
