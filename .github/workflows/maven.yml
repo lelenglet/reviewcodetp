@@ -15,7 +15,7 @@ on:
     branches: ["main"]
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Run Semgrep
         run: semgrep --config=auto .
 
-  cd:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
