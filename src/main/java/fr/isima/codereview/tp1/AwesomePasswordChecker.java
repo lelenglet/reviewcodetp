@@ -20,9 +20,9 @@ public class AwesomePasswordChecker {
   /**
    * Creation of a new passwordChecker from file.
    * 
-   * @param file
+   * @param file file
    * @return instance
-   * @throws IOException
+   * @throws IOException initialization failed
    */
   public static AwesomePasswordChecker getInstance(File file) throws IOException {
     if (instance == null) {
@@ -35,7 +35,7 @@ public class AwesomePasswordChecker {
    * Creation of a new passwordChecker from ressource file.
    * 
    * @return instance
-   * @throws IOException
+   * @throws IOException initialization failed
    */
   public static AwesomePasswordChecker getInstance() throws IOException {
     if (instance == null) {
@@ -50,7 +50,7 @@ public class AwesomePasswordChecker {
    * 
    * 
    * @param is inputStream
-   * @throws IOException
+   * @throws IOException initialization failed
    */
   private AwesomePasswordChecker(InputStream is) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -68,15 +68,16 @@ public class AwesomePasswordChecker {
   }
 
   /**
-   * Create a maskArray from a password
+   * Create a maskArray from a password.
    * 
    * @param password password
    * @return maskArray
    */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28];
-    if (password == null)
+    if (password == null) {
       return null;
+    }
     int limit = Math.min(password.length(), 28);
 
     for (int i = 0; i < limit; ++i) {
@@ -141,8 +142,9 @@ public class AwesomePasswordChecker {
    * @return minDistance
    */
   public double getDIstance(String password) {
-    if (password == null)
+    if (password == null) {
       return -1;
+    }
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
     for (double[] center : clusterCenters) {
@@ -173,8 +175,9 @@ public class AwesomePasswordChecker {
    * @return md5hex.toString()
    */
   public static String ComputeMD5(String input) {
-    if (input == null)
+    if (input == null) {
       return null;
+    }
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
 
@@ -227,8 +230,9 @@ public class AwesomePasswordChecker {
       int b = h[1];
       int c = h[2];
       int d = h[3];
+      int j;
 
-      for (int j = 0; j < 64; j++) {
+      for (j = 0; j < 64; j++) {
         int f, g;
         if (j < 16) {
           f = (b & c) | (~b & d);
