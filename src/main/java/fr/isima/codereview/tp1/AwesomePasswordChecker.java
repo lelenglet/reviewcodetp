@@ -233,7 +233,8 @@ public class AwesomePasswordChecker {
       int j;
 
       for (j = 0; j < 64; j++) {
-        int f, g;
+        int f;
+        int g;
         if (j < 16) {
           f = (b & c) | (~b & d);
           g = j;
