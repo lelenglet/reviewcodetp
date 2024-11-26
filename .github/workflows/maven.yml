@@ -48,8 +48,9 @@ jobs:
           distribution: "temurin"
           cache: maven
 
-      - name: Build and Deploy to GitHub Maven
-        run: mvn deploy
+      #- name: Build and Deploy to GitHub Maven
+      #  run: mvn org.jboss.maven.plugins:maven-buildmagic-thirdparty-plugin:maven-deploy \
+      #  -Durl=https://github.com/lelenglet/reviewcodetp
 
       #- name: Generate Javadoc
       #  run: mvn javadoc:javadoc
